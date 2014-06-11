@@ -1,0 +1,1 @@
+This is a template for a postit app; following the TeaLeaf Academy course.
