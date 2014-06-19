@@ -1,0 +1,30 @@
+<div class="pull-right">
+  <%= link_to "[edit]", edit_post_path(@post)%>
+</div>
+
+<%= render 'shared/content_title', title: @post.title %>
+<p>
+  <%= link_to @post.url, fix_url(@post.url) %> <!-- check helper -->
+  <br>
+
+  <%= @post.description %>
+</p>
+<hr/>
+<%= render "shared/error", object: @comment %>
+
+<h4>Create a comment</h4>
+<%= form_for [@post, @comment] do |f|%> 
+<!--[@parentobject, @object we are dealing with], make sure all instance variables are available at comments_controller -->
+  <%= f.text_area :body %> <br>
+  <%= f.submit 'Create Comment', class: "btn btn-primary"%>
+<% end %>
+
+
+<% @post.comments.each do |postcomment|%>
+  <ul>
+    <li> <%= postcomment.body %></li>
+  </ul>
+<%end%>
+
+<%= link_to 'back', posts_path%>
+

@@ -1,0 +1,20 @@
+<%= render "shared/error", object: @post %>
+
+<%= form_for @post do |f|%>
+  <%= f.label :title %>
+  <%= f.text_field :title%> 
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+  <%= f.label :url %>
+  <%= f.text_field :url%>
+
+  <br>
+
+<%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb| %>
+<%= cb.label(class: "checkbox inline") {cb.check_box(class: "checkbox") + cb.text}%> 
+<% end %>
+<!-- second line is just styling, the first line works fine -->
+
+<br>
+  <%= f.submit(@post.new_record? ? "create post" : "Update Post", class: "btn btn-primary" )%>
+<% end %>
