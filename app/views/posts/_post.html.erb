@@ -7,7 +7,7 @@
     <p><%= post.description %></p>
     
     <p>
-    <span class="quiet">posted by </span> <%= post.creator.username %><small> at  <%= post.created_at %></small></p>
+    <span class="quiet">posted by </span> <%= post.creator.username if post.creator %><small> at  <%= post.created_at %></small></p>
 
 
 
