@@ -13,7 +13,7 @@
 <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb| %>
 <%= cb.label(class: "checkbox inline") {cb.check_box(class: "checkbox") + cb.text}%> 
 <% end %>
-<!-- second line is just styling, the first line works fine -->
+<!-- second line is just styling, the first line works fine. Check http://apidock.com/rails/v4.0.2/ActionView/Helpers/FormOptionsHelper/collection_check_boxes -->
 
 <br>
   <%= f.submit(@post.new_record? ? "create post" : "Update Post", class: "btn btn-primary" )%>

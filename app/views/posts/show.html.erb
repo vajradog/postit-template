@@ -1,5 +1,6 @@
 <div class="pull-right">
-  <%= link_to "[edit]", edit_post_path(@post)%>
+  <%= link_to '[back]', posts_path%> | 
+<%= link_to "[edit]", edit_post_path(@post)%>
 </div>
 
 <%= render 'shared/content_title', title: @post.title %>
@@ -14,17 +15,20 @@
 
 <h4>Create a comment</h4>
 <%= form_for [@post, @comment] do |f|%> 
+  <div class="control-group">
 <!--[@parentobject, @object we are dealing with], make sure all instance variables are available at comments_controller -->
   <%= f.text_area :body %> <br>
+  </div>
   <%= f.submit 'Create Comment', class: "btn btn-primary"%>
 <% end %>
 
 
-<% @post.comments.each do |postcomment|%>
-  <ul>
-    <li> <%= postcomment.body %></li>
-  </ul>
+<% @post.reload.comments.each do |postcomment|%>
+<div class="span8 well">
+ <span class="quiet"> @<%= @post.creator.username%> said:</span> <%= postcomment.body %> <span class="quiet"><i> <%= postcomment.created_at%> ago</i></span>
+</div>
 <%end%>
 
-<%= link_to 'back', posts_path%>
+<br>
+
 
