@@ -11,6 +11,7 @@
   <%= @post.description %>
 </p>
 <hr/>
+
 <%= render "shared/error", object: @comment %>
 
 <h4>Create a comment</h4>
@@ -23,9 +24,10 @@
 <% end %>
 
 
+
 <% @post.reload.comments.each do |postcomment|%>
 <div class="span8 well">
- <span class="quiet"> @<%= @post.creator.username%> said:</span> <%= postcomment.body %> <span class="quiet"><i> <%= postcomment.created_at%> ago</i></span>
+ <span class="quiet"> @<%= @post.creator.username%> said:</span> <%= postcomment.body %> <span class="quiet"><i> on <%= postcomment.created_at.strftime("%B %d, %Y")%></i></span>
 </div>
 <%end%>
 
