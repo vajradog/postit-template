@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
 
+  before_action :require_user, except: [:index, :show]
+
   def create
     @post = Post.find(params[:post_id]) #parent object then the object we are dealing with
     @comment = @post.comments.build(params.require(:comment).permit(:body))

@@ -3,6 +3,7 @@
 <%= link_to "[edit]", edit_post_path(@post)%>
 </div>
 
+<div>
 <%= render 'shared/content_title', title: @post.title %>
 <p>
   <%= link_to @post.url, fix_url(@post.url) %> <!-- check helper -->
@@ -10,10 +11,10 @@
 
   <%= @post.description %>
 </p>
-<hr/>
+
 
 <%= render "shared/error", object: @comment %>
-
+<% if logged_in? %>
 <h4>Create a comment</h4>
 <%= form_for [@post, @comment] do |f|%> 
   <div class="control-group">
@@ -23,7 +24,13 @@
   <%= f.submit 'Create Comment', class: "btn btn-primary"%>
 <% end %>
 
+<% else %>
+<%= link_to 'Log in to create a comment', login_path, class: 'btn btn-success btn-small'%>
+<% end %>
 
+<br>
+
+<hr/>
 
 <% @post.reload.comments.each do |postcomment|%>
 <div class="span8 well">
@@ -32,5 +39,5 @@
 <%end%>
 
 <br>
-
+</div>
 

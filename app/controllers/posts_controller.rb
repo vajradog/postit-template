@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update]
+  before_action :require_user, except: [:index, :show]
 
   def index
     @posts = Post.all.order('id DESC')
@@ -15,7 +16,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @post.creator = User.first #change this once we have authentication
+    @post.creator = current_user
 
     if @post.save
       flash[:notice] = "Post successfully created"

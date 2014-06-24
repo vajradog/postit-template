@@ -9,7 +9,7 @@
     <p>
     <span class="quiet"><i>posted by</i>  <%= post.creator.username if post.creator %> <i>on  <%= post.created_at.strftime("%B %d, %Y") %></i></small></p>
 
-    <small><span class="label label-info"><%= link_to 'Edit this post ', edit_post_path(post)%></span>
+    <% if logged_in? %><small><span class="label label-info"><%= link_to 'Edit this post ', edit_post_path(post)%></span><% end %>
       <span class="label label-warning"><%= link_to("#{post.comments.size} comments", post_path(post)) %> </span>
     </small>
 
