@@ -1,4 +1,7 @@
 class UsersController <ApplicationController
+  before_action :require_user, only: [:edit]
+
+
   def index
     redirect_to posts_path
   end

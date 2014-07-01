@@ -4,20 +4,24 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   helper_method :current_user, :logged_in?
+  #helper_method because these methods are also used in view templates, otherwise they will only be available in controllers.
 
 
   def current_user
-   User.find(session[:user_id]) if session[:user_id]
+   @current ||= User.find(session[:user_id]) if session[:user_id]
+   # if session because it will throw an exception if it cannot find a user
+   # the @current instance variable is for memoization because this method will be called many times.
   end
 
   def logged_in?
     !!current_user
+    # two bangs turns any object into a boolean value. ! false and !! is true
   end
 
   def require_user
     if !logged_in?
-      flash[:error]="You must be logged in to do that"
-      redirect_to root_path
+      flash[:error]="Please log in to do that"
+      redirect_to login_path
     end
   end
 end
