@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 
 
   def current_user
-   @current ||= User.find(session[:user_id]) if session[:user_id]
+   @current_user ||= User.find(session[:user_id]) if session[:user_id]
    # if session because it will throw an exception if it cannot find a user
    # the @current instance variable is for memoization because this method will be called many times.
   end

@@ -29,11 +29,23 @@
 </div>
  <div class='nav_item'>
  <% if logged_in? %>
+    <div class="dropdown">
     <%= link_to 'New Post', new_post_path, class: 'btn btn-success btn-small' %>
-    <%=link_to "hi #{current_user.username}", edit_user_path(current_user), class: 'btn btn-success btn-small' %>
-        <%= link_to 'Logout', logout_path, class: 'btn btn-warning btn-small' %>
+
+  <button class="btn btn-small dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+    <%= current_user.username%>
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+    <li role="presentation"><%= link_to 'View Profile', user_path(current_user)%></li>
+    <li role="presentation"><%= link_to 'Edit Profile', edit_user_path(current_user) %></li>
+    <li role="presentation" class="divider"></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1"> <%= link_to 'Logout', logout_path %></a></li>
+  </ul>
+</div>
+
   <% else %>
-    <%= link_to 'Register', new_user_path, class: 'btn btn-success btn-small' %>
+    <%= link_to 'Register', register_path, class: 'btn btn-success btn-small' %>
     <%= link_to 'Login', login_path, class: 'btn btn-success btn-small' %>
   <% end %>
   </div>

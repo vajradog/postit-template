@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update]
-  before_action :require_user, except: [:index, :show]
+  before_action :post_owner?, except: [:show, :index]
+
 
   def index
     @posts = Post.all.order('id DESC')
@@ -26,10 +27,10 @@ class PostsController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+  end
 
   def update
-
     if @post.update(post_params)
       flash[:notice] = "Post successfully updated"
       redirect_to posts_path
@@ -46,4 +47,12 @@ class PostsController < ApplicationController
   def set_post
     @post = Post.find(params[:id])
   end
+
+def post_owner?
+  if current_user != @post.creator
+      flash[:error]= "You are not authorised to do that"
+      redirect_to root_path
+    end
+end
+  
 end

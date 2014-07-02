@@ -7,9 +7,9 @@
     <p><%= post.description %></p>
     
     <p>
-    <span class="quiet"><i>posted by</i>  <%= post.creator.username if post.creator %> <i>on  <%= post.created_at.strftime("%B %d, %Y") %></i></small></p>
+    <span class="quiet"><i>posted by</i>  <%= link_to post.creator.username, user_path(post.creator) if post.creator %> <i>on  <%= post.created_at.strftime("%B %d, %Y") %></i></small></p>
 
-    <% if logged_in? %><small><span class="label label-info"><%= link_to 'Edit this post ', edit_post_path(post)%></span><% end %>
+    <% if logged_in? && current_user.id == post.user_id %><small><span class="label label-info"><%= link_to 'Edit this post ', edit_post_path(post)%></span><% end %>
       <span class="label label-warning"><%= link_to("#{post.comments.size} comments", post_path(post)) %> </span>
     </small>
 
