@@ -1,10 +1,11 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update]
-  before_action :post_owner?, except: [:show, :index]
+  before_action :set_post, only: [:show, :edit, :update, :vote]
+  before_action :require_user, except: [:show, :index]
 
 
   def index
-    @posts = Post.all.order('id DESC')
+    @posts = Post.all.sort_by{|x| x.total_votes}.reverse
+    #Post.all maybe a bad idea for large data. Limit it. Maybe show 50 recent post etc.
   end
 
   def show
@@ -28,6 +29,10 @@ class PostsController < ApplicationController
   end
 
   def edit
+    if current_user != @post.creator
+      flash[:error]= "You are not authorised to do that"
+      redirect_to root_path
+    end
   end
 
   def update
@@ -39,6 +44,18 @@ class PostsController < ApplicationController
     end
   end
 
+  def vote
+    @vote = Vote.create(voteable: @post, creator: current_user, vote: params[:vote])
+
+    if @vote.valid?
+      flash[:notice]="Vote Counted"
+    else
+      flash[:error] = "Vote not counted"
+    end
+      redirect_to :back
+
+  end
+
   private
   def post_params
       params.require(:post).permit(:title, :description, :url, category_ids: [])   
@@ -47,12 +64,4 @@ class PostsController < ApplicationController
   def set_post
     @post = Post.find(params[:id])
   end
-
-def post_owner?
-  if current_user != @post.creator
-      flash[:error]= "You are not authorised to do that"
-      redirect_to root_path
-    end
-end
-  
 end

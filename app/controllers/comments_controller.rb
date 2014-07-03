@@ -1,6 +1,5 @@
 class CommentsController < ApplicationController
-
-  before_action :require_user, except: [:index, :show]
+  before_action :require_user
 
   def create
     @post = Post.find(params[:post_id]) #parent object then the object we are dealing with
@@ -9,9 +8,23 @@ class CommentsController < ApplicationController
    
    if @comment.save #object we are dealing with
     flash[:notice]="Comment created"
-    redirect_to post_path(@post)
-  else
+    redirect_to :back
+   else
+    @post.reload
     render 'posts/show' #because it's in another(posts) folder
+   end
   end
-end
+
+  def vote
+    comment = Comment.find(params[:id])
+    vote = Vote.create(voteable: comment, creator: current_user, vote: params[:vote])
+
+    if vote.valid?
+      flash[:notice]="Vote Counted"
+    else
+      flash[:error] = "Vote not counted"
+    end
+      redirect_to :back
+
+  end
 end
