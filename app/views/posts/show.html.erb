@@ -1,37 +1,31 @@
 <div>
-<%= render 'shared/content_title', title: @post.title %>
-<p>
-  <%= link_to @post.url, fix_url(@post.url) %> <!-- check helper -->
+  <%= render 'shared/content_title', title: @post.title %>
+  <p>
+    <%= link_to @post.url, fix_url(@post.url) %> <!-- check helper -->
   <br>
-
-  <%= @post.description %>
-</p>
-
-
-<% if logged_in? %>
-<h4>Create a comment</h4>
-<%= form_for [@post, @comment] do |f|%> 
-<%= render "shared/error", object: @comment %>
+    <%= @post.description %>
+  </p>
+  
+  <% if logged_in? %>
+    <%= form_for [@post, @comment] do |f|%> 
+    <%= render "shared/error", object: @comment %>
 
   <div class="control-group">
-<!--[@parentobject, @object we are dealing with], make sure all instance variables are available at comments_controller -->
-  <%= f.label :body, 'Leave a comment' %>
-  <%= f.text_area :body, rows: 3, class: 'span4' %> <br>
+  <!--[@parentobject, @object we are dealing with], make sure all instance variables are available at comments_controller -->
+    <%= f.label :body, 'Leave a comment' %>
+    <%= f.text_area :body, rows: 3, class: 'span4' %> <br>
   </div>
-  <%= f.submit 'Create Comment', class: "btn btn-primary"%>
-<% end %>
+    <%= f.submit 'Create Comment', class: "btn btn-primary"%>
+  <% end %>
 
-<% else %>
-<%= link_to 'Log in to create a comment', login_path, class: 'btn btn-success btn-small'%>
-<% end %>
+  <% else %>
+    <%= link_to 'Log in to create a comment', login_path, class: 'btn btn-success btn-small'%>
+  <% end %>
+  </div>
 </div>
-<br>
 
 <hr/>
-
-<h5>Comments</h5>
-
-<% @post.comments.each do |comment|%>
-  <%= render 'comments/comment', comment: comment %>
-<%end%>
+  <% @post.comments.each do |comment|%>
+    <%= render 'comments/comment', comment: comment %>
+  <%end%>
 

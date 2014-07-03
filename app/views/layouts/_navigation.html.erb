@@ -3,6 +3,7 @@
     <%= link_to "Postit!", root_path, :class => 'brand' %>
   </li>
 </ul>
+
 <div class='btn-group nav_item'>
   <%= link_to '#', class: 'btn btn-small drowndown-toggle', 'data-toggle' => 'dropdown' do %>
   Categories <span class='caret'></span>
@@ -27,15 +28,16 @@
      <% end %>
   </ul>
 </div>
- <div class='nav_item'>
- <% if logged_in? %>
+
+<div class='nav_item'>
+  <% if logged_in? %>
     <div class="dropdown">
     <%= link_to 'New Post', new_post_path, class: 'btn btn-success btn-small' %>
 
-  <button class="btn btn-small dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-    <%= current_user.username%>
-    <span class="caret"></span>
-  </button>
+    <button class="btn btn-small dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+    <i class="icon-user"></i><%= current_user.username%>
+      <span class="caret"></span>
+    </button>
   <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
     <li role="presentation"><%= link_to 'View Profile', user_path(current_user)%></li>
     <li role="presentation"><%= link_to 'Edit Profile', edit_user_path(current_user) %></li>
@@ -48,4 +50,4 @@
     <%= link_to 'Register', register_path, class: 'btn btn-success btn-small' %>
     <%= link_to 'Login', login_path, class: 'btn btn-success btn-small' %>
   <% end %>
-  </div>
+</div>

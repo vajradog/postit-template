@@ -7,8 +7,8 @@ class CommentsController < ApplicationController
     @comment.creator = current_user
    
    if @comment.save #object we are dealing with
-    flash[:notice]="Comment created"
     redirect_to :back
+    flash[:notice]="Comment created"
    else
     @post.reload
     render 'posts/show' #because it's in another(posts) folder
