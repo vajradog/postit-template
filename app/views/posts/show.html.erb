@@ -16,15 +16,17 @@
     <%= f.text_area :body, rows: 3, class: 'span4' %> <br>
   </div>
     <%= f.submit 'Create Comment', class: "btn btn-primary"%>
+    <br><br>
   <% end %>
 
   <% else %>
     <%= link_to 'Log in to create a comment', login_path, class: 'btn btn-success btn-small'%>
+   <br><br>
   <% end %>
   </div>
 </div>
 
-<hr/>
+
   <% @post.comments.each do |comment|%>
     <%= render 'comments/comment', comment: comment %>
   <%end%>
