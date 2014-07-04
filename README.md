@@ -1,7 +1,6 @@
 # Postit - Reddit clone, kinda.
 
-![icon](http://fc07.deviantart.net/fs70/f/2012/211/c/0/totoro_png_by_greciatorres-d596jpw.png =100x)
-
+![icon](vajradog.github.com/postit-template/public/totoro.png =100x)
 ## Overview
 
 **Postit** was created follwing the Tealeaf Academy Rails Online Bootcamp *:course 2*. With **Postit** you can register yourself, share posts with links, create categories and vote on posts. You can visit and demo the working site at <http://postit-template.herokuapp.com/>
