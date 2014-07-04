@@ -36,6 +36,7 @@ class PostsController < ApplicationController
   end
 
   def update
+    binding.pry
     if @post.update(post_params)
       flash[:notice] = "Post successfully updated"
       redirect_to posts_path
