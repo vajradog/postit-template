@@ -30,10 +30,7 @@ class UsersController <ApplicationController
     end
   end
 
-  def show
-    @posts = @user.posts
-    @post = Post.find(params[:id])
-  end
+  def show;end
 
   private
   def user_params
