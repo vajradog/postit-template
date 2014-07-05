@@ -1,7 +1,7 @@
 # Postit - Reddit clone, kinda.
 ## Overview
 
-**Postit** was created follwing the Tealeaf Academy Rails Online Bootcamp *:course 2*. With **Postit** you can register yourself, share posts with links, create categories and vote on posts. You can visit and demo the working site at <http://postit-template.herokuapp.com/>
+**Postit** was created follwing the Tealeaf Academy Rails Online Bootcamp *:course 2*. With **Postit** you can register, authenticate, share posts with links, create categories and vote on posts and comments. Demo the working site at <http://postit-template.herokuapp.com/>
 
 ####  To use the project as a template
 1. Just fork the project or download from github
@@ -29,6 +29,7 @@ Optionally I've also added pry, rubocop (A Ruby static code analyzer, based on t
 The authentication, voting systems etc. are all built manually.
 
 ### About the TeaLeaf Academy
+`SPECIAL NOTE: Tealeaf Academy is totally worth every penny and every minute.`
 Tealeaf Academy is an online school for developers offering a professional grade curriculum designed to teach students to build production quality apps and become ready for jobs as developers at leading tech companies. Tealeaf Academy offers students constant support from teachers, teacher assistants, and a community of peers around the world.
 
 <https://www.gotealeaf.com>
