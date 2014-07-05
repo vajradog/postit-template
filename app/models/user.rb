@@ -1,4 +1,4 @@
-class User <ActiveRecord::Base
+class User < ActiveRecord::Base
   before_save { self.username = username.downcase }
 
   has_many :posts, dependent: :destroy

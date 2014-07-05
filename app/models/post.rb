@@ -1,4 +1,4 @@
-class Post <ActiveRecord::Base
+class Post < ActiveRecord::Base
   belongs_to :creator, foreign_key: 'user_id', class_name: 'User'
   has_many :comments, dependent: :destroy, order: "created_at DESC"
   has_many :post_categories

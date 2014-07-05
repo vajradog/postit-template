@@ -4,13 +4,13 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   helper_method :current_user, :logged_in?
-  #helper_method because these methods are also used in view templates, otherwise they will only be available in controllers.
-
+  # to make them available also in view templates.
 
   def current_user
-   @current_user ||= User.find(session[:user_id]) if session[:user_id]
-   # if session because it will throw an exception if it cannot find a user
-   # the @current instance variable is for memoization because this method will be called many times.
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    # if session because it will throw an exception if it cannot find a user
+    # the @current instance variable is for memoization because this method 
+    # continued... will be called many times.
   end
 
   def logged_in?
