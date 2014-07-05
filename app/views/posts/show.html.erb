@@ -6,27 +6,8 @@
     <%= @post.description %>
   </p>
   <hr>
-  <% if logged_in? %>
-    <%= form_for [@post, @comment] do |f|%> 
-    <%= render "shared/error", object: @comment %>
-
-  <div class="control-group">
-  <!--[@parentobject, @object we are dealing with], make sure all instance variables are available at comments_controller -->
-    <%= f.label :body, 'Leave a comment' %>
-    <%= f.text_area :body, rows: 3, class: 'span4' %> <br>
-  </div>
-    <%= f.submit 'Create Comment', class: "btn btn-primary"%>
-    <br><br>
-  <% end %>
-
-  <% else %>
-    <%= link_to 'Log in to create a comment', login_path, class: 'btn btn-success btn-small'%>
-   <br><br>
-  <% end %>
-  </div>
+  <%= render 'comments/form' %>
 </div>
-
-
   <% @post.comments.each do |comment|%>
     <%= render 'comments/comment', comment: comment %>
   <%end%>
