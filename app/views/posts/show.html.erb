@@ -1,7 +1,7 @@
 <div>
   <%= render 'shared/content_title', title: @post.title %>
   <span class="label label-info"><%= link_to 'visit website', fix_url(@post.url) if @post.url?%></span>
-  <br> <br> 
+  <br> <br>
    <p>
     <%= @post.description %>
   </p>
