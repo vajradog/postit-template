@@ -44,10 +44,11 @@ class PostsController < ApplicationController
   end
 
   def vote
-    @vote = Vote.create(voteable: @post, creator: current_user, vote: params[:vote])
+    @vote = Vote.create(voteable: @post, creator: current_user,
+                        vote: params[:vote])
 
     if @vote.valid?
-      flash[:notice]= 'Vote Counted'
+      flash[:notice] = 'Vote Counted'
     else
       flash[:error] = 'You cannot vote twice'
     end
@@ -56,6 +57,7 @@ class PostsController < ApplicationController
   end
 
   private
+  
   def post_params
       params.require(:post).permit(:title, :description, :url, category_ids: [])   
   end

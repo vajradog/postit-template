@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
     # if session because it will throw an exception if it cannot find a user
-    # the @current instance variable is for memoization because this method 
+    # the @current instance variable is for memoization because this method
     # continued... will be called many times.
   end
 
@@ -19,8 +19,8 @@ class ApplicationController < ActionController::Base
   end
 
   def require_user
-    if !logged_in?
-      flash[:error]="Please log in to do that"
+    unless logged_in?
+      flash[:error] = 'Please log in to do that'
       redirect_to login_path
     end
   end
