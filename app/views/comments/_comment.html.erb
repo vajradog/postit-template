@@ -3,7 +3,7 @@
 <div class="row">
   <div class="span0 well text-center">
   <% if logged_in?%>
-    <%= link_to vote_post_comment_path(@post, comment, vote: true), method: 'post' do %>
+    <%= link_to vote_post_comment_path(comment.post, comment, vote: true), method: 'post' do %>
       <i class="icon-thumbs-up"></i>
     <% end %>
     <% end %>
@@ -11,14 +11,14 @@
   <%= pluralize(comment.total_votes, 'vote') %>
    <br>
    <% if logged_in? %>
-    <%= link_to vote_post_comment_path(@post, comment, vote: false), method: 'post' do %>
+    <%= link_to vote_post_comment_path(comment.post, comment, vote: false), method: 'post' do %>
       <i class="icon-thumbs-down"></i>
     <% end %>
     <% end %>
  </div>
 
   <div class="well span8">
-    <em>"<%= comment.body%>"</em>
+    <em>"<%= comment.body %>"</em>
 
     <% if show_post%>
     on <%= link_to comment.post.title, post_path(comment.post)%>
