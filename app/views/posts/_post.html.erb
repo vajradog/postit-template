@@ -1,16 +1,15 @@
-<span id="flash_message"><%= render 'layouts/messages' %></span>
 <div class="row">
   <div class="span0 well text-center">
     <% if logged_in?%>
-      <%= link_to vote_post_path(post, vote: true), method: 'post', remote: true do %>
+      <%= link_to vote_post_path(post, vote: true), method: 'post' do %>
       <i class="icon-thumbs-up"></i>
       <% end %>
     <% end %>
-      <br>
-        <span id="post_<%= post.id %>_votes"><%= pluralize(post.total_votes, 'vote') %></span>
-      <br>
+    <br>
+      <%= pluralize(post.total_votes, 'vote') %>
+    <br>
     <% if logged_in?%>
-      <%= link_to vote_post_path(post, vote: false), method: 'post', remote: true do %>
+      <%= link_to vote_post_path(post, vote: false), method: 'post' do %>
       <i class="icon-thumbs-down"></i>
       <% end %>
     <% end %>

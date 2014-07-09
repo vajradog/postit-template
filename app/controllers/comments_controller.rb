@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   before_action :require_user
 
   def create
-    @post = Post.find(params[:post_id]) # parent object then the object
+    @post = Post.find_by(slug: params[:post_id]) # parent object then the object
     @comment = @post.comments.build(params.require(:comment).permit(:body))
     @comment.creator = current_user
 
