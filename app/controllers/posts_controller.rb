@@ -47,13 +47,18 @@ class PostsController < ApplicationController
     @vote = Vote.create(voteable: @post, creator: current_user,
                         vote: params[:vote])
 
-    if @vote.valid?
-      flash[:notice] = 'Vote Counted'
-    else
-      flash[:error] = 'You cannot vote twice'
+    respond_to do |format|
+      format.html do
+        if @vote.valid?
+          flash[:notice] = 'Vote Counted'
+        else
+          flash[:error] = 'You cannot vote twice'
+        end
+          redirect_to :back
+      end
+      
+      format.js
     end
-      redirect_to :back
-
   end
 
   private
