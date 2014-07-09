@@ -10,4 +10,14 @@ class User < ActiveRecord::Base
   validates :username, presence: true, uniqueness:  { case_sensitive: false }, length: { minimum: 5 }
   validates :password, presence: true, length: { minimum: 5 },
             on: :create
+
+  before_save :generate_slug
+
+  def to_param
+    self.slug
+  end
+
+  def generate_slug
+    self.slug = self.username.gsub(/\p{^Alnum}/, '-').downcase
+  end
 end
