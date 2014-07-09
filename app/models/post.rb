@@ -7,6 +7,8 @@ class Post < ActiveRecord::Base
 
   validates :title, presence: true
   before_save :generate_slug
+  # before_create will generate slug once only. 
+  # helpful if we don't want the slug to change on update, etc.
 
   def total_votes
     upvotes - downvotes
