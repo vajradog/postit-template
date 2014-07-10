@@ -21,7 +21,7 @@
     <p><%= post.description %></p>
     <p><span class="quiet"><i>posted by</i>
     <%= link_to post.creator.username, user_path(post.creator) if post.creator %>
-    <i>on  <%= post.created_at.strftime("%B %d, %Y") %></i></span>
+    <i>on  <%= display_datetime(post.created_at) %></i></span>
     </p>
 
     <% if logged_in? && current_user.id == post.user_id %>
