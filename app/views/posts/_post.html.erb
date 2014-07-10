@@ -24,7 +24,7 @@
     <i>on  <%= post.created_at.strftime("%B %d, %Y") %></i></span>
     </p>
 
-    <% if logged_in? && current_user.id == post.user_id %>
+    <% if logged_in? && current_user.id == post.user_id || current_user.admin?%>
       <small>
         <span class="label label-info">
         <%= link_to 'Edit this post ', edit_post_path(post)%>
