@@ -59,7 +59,7 @@ end
   private
 
   def post_params
-      params.require(:post).permit(:title, :description, :url, category_ids: [])   
+      params.require(:post).permit(:title, :description, :url, category_ids: [])
   end
 
   def set_post
@@ -67,6 +67,6 @@ end
   end
 
   def require_creator
-    access_denied unless logged_in? and (current_user == @post.creator || current_user.admin? )
+    access_denied unless logged_in? and (current_user == @post.creator || current_user.admin?)
   end
 end
